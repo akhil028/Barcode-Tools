@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excel/CSV Split and Zip</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- External Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid py-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8">
+        <!-- Main Card -->
+        <div class="card shadow-lg">
+          <div class="card-header bg-dark text-white">
+            <h1 class="card-title mb-0 text-center">
+              <i class="bi bi-file-zip"></i> Excel/CSV Splitter
+            </h1>
+            <p class="text-center mb-0 mt-2 opacity-75">Split large files into smaller chunks and download as a ZIP</p>
+          </div>
+          
+          <div class="card-body p-4">
+            
+            <!-- Step 1: Upload File -->
+            <div class="card mb-4">
+              <div class="card-header">
+                <h5 class="mb-0"><i class="bi bi-1-circle-fill"></i> Upload File</h5>
+              </div>
+              <div class="card-body">
+                <label for="upload" class="form-label fw-bold">Select Excel or CSV File:</label>
+                <input type="file" class="form-control form-control-lg" id="upload" accept=".xlsx,.xls,.csv">
+                <div class="form-text">Supported formats: .xlsx, .xls, .csv</div>
+                <!-- File Info Display -->
+                <div id="fileInfo" class="mt-3" style="display: none;"></div>
+              </div>
+            </div>
+            
+            <!-- Step 2: Configure Split -->
+            <div class="card mb-4" id="configSection" style="display: none;">
+              <div class="card-header">
+                <h5 class="mb-0"><i class="bi bi-2-circle-fill"></i> Configuration</h5>
+              </div>
+              <div class="card-body">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="rowCount" class="form-label fw-bold">Rows per Split File:</label>
+                    <input type="number" class="form-control" id="rowCount" placeholder="e.g., 100" min="1" max="100000" value="1000">
+                    <div class="form-text">Excludes the header row. Max: 100,000</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-bold">Header Option:</label>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="headerOption" id="includeHeader" value="include" checked>
+                      <label class="form-check-label" for="includeHeader">Include Header in All Files</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="headerOption" id="excludeHeader" value="exclude">
+                      <label class="form-check-label" for="excludeHeader">Exclude Header from Split Files</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Step 3: Process -->
+            <div class="text-center" id="actionSection" style="display: none;">
+              <button class="btn btn-primary btn-lg" onclick="splitAndZipFile()" id="splitBtn">
+                <i class="bi bi-play-circle"></i> Split and Create Zip
+              </button>
+              <button class="btn btn-outline-secondary mt-2" onclick="clearAll()" id="clearBtn">
+                <i class="bi bi-arrow-clockwise"></i> Start Over
+              </button>
+            </div>
+            
+            <!-- Output / Progress -->
+            <div id="output" class="mt-4"></div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="../scripts/Seperate_Excel_File.js"></script>
+
+
+</body>
+</html>

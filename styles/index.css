@@ -1,0 +1,20 @@
+body {
+  background-color: #f8f9fa;
+}
+.tool-card {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.tool-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+.tool-icon {
+  font-size: 1.5rem;
+  color: #0d6efd;
+}
+.card-title .tool-icon {
+  vertical-align: middle;
+  margin-right: 10px;
+}
