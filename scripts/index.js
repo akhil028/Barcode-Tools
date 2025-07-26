@@ -1,7 +1,7 @@
 // Define all the available tools with user-friendly names, descriptions, and icons
 const tools = [
   {
-    file: "CODE128.html",
+    file: "./CODE128.html",
     title: "CODE128 Generator",
     desc: "Generate CODE128 barcodes from Excel or CSV data.",
     icon: "bi-upc-scan",
